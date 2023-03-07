@@ -7,10 +7,16 @@ using UnityEngine.Networking;
 
 public class Entry: MonoBehaviour
 {
+
+    public static Entry instance;
+    
     private void Awake()
     {
-        StartCoroutine(LoadAssemblyAndAssetBundle());
+        instance = this;
+        // StartCoroutine(LoadAssemblyAndAssetBundle());
 
+        StartCoroutine(LoadAssembly());
+        
         // StartCoroutine(LoadAssetBundle());
     }
 
@@ -37,7 +43,7 @@ public class Entry: MonoBehaviour
 
         Debug.Log(assembly);
 
-        // InvokeStaticMethod(assembly);
+        InvokeStaticMethod(assembly);
 
         // CreateDelegate(assembly);
 
@@ -85,7 +91,7 @@ public class Entry: MonoBehaviour
         Instantiate(assetBundle.LoadAsset<GameObject>("HotUpdatePrefab.prefab"));
     }
 
-    private const string kLocalUrl = "http://172.18.13.106:8000/";
+    private const string kLocalUrl = "http://172.18.13.106:8000/StreamingAssets/";
 
     private static string GetPath(string fileName)
     {
