@@ -23,12 +23,6 @@
 [热更新原理](https://www.bilibili.com/video/BV1wT411V7Kk/?spm_id_from=333.337.search-card.all.click&vd_source=63c69e4588004688b161e96ed46205e2)
 
 
-
-
-
-
-
-
 ## 安装步骤
 
 1. 导入`HybridCLR package`
@@ -91,7 +85,6 @@ public static class CopyAssetsEditor
     }
 }
 ```
-
 
 ## 运行热更新代码(代码在 `Assembly-CSharp`)
 
@@ -337,3 +330,7 @@ public static class BuildAssetBundleEditor
         Instantiate(assetBundle.LoadAsset<GameObject>("HotUpdatePrefab.prefab"));
     }
 ```
+
+## 构建 `Apk` 包
+
+### 将之前构建出来的 dll 和 ab 放到服务器上

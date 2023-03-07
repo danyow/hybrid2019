@@ -9,14 +9,22 @@ public class Entry: MonoBehaviour
 {
     private void Awake()
     {
-        // StartCoroutine(LoadAssembly());
-        StartCoroutine(LoadAssetBundle());
+        StartCoroutine(LoadAssemblyAndAssetBundle());
+
+        // StartCoroutine(LoadAssetBundle());
+    }
+
+    private static IEnumerator LoadAssemblyAndAssetBundle()
+    {
+        yield return LoadAssembly();
+        yield return LoadAssetBundle();
     }
 
     private const string kAssembleName = "Assembly-CSharp.dll.bytes";
 
     private static IEnumerator LoadAssembly()
     {
+        Debug.Log(nameof(LoadAssembly));
         var path = GetPath(kAssembleName);
         var request = UnityWebRequest.Get(path);
         yield return request.SendWebRequest();
@@ -27,13 +35,13 @@ public class Entry: MonoBehaviour
         var assembleData = request.downloadHandler.data;
         var assembly = Assembly.Load(assembleData);
 
-        // Debug.Log(assembly);
+        Debug.Log(assembly);
 
         // InvokeStaticMethod(assembly);
 
         // CreateDelegate(assembly);
 
-        CreateInterface(assembly);
+        // CreateInterface(assembly);
     }
 
     private static void InvokeStaticMethod(Assembly assembly)
@@ -62,6 +70,7 @@ public class Entry: MonoBehaviour
 
     private static IEnumerator LoadAssetBundle()
     {
+        Debug.Log(nameof(LoadAssetBundle));
         var path = GetPath(kPrefabsName);
 
         var request = UnityWebRequest.Get(path);
@@ -77,9 +86,11 @@ public class Entry: MonoBehaviour
     }
 
     private const string kLocalUrl = "http://172.18.13.106:8000/";
+
     private static string GetPath(string fileName)
     {
         return Path.Combine(kLocalUrl, fileName);
+
         // return Path.Combine(Application.streamingAssetsPath, fileName);
     }
 }
