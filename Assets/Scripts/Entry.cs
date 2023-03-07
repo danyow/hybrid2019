@@ -17,7 +17,7 @@ public class Entry: MonoBehaviour
 
     private static IEnumerator LoadAssembly()
     {
-        var path = Path.Combine(Application.streamingAssetsPath, kAssembleName);
+        var path = GetPath(kAssembleName);
         var request = UnityWebRequest.Get(path);
         yield return request.SendWebRequest();
         if(!request.isDone)
@@ -62,7 +62,7 @@ public class Entry: MonoBehaviour
 
     private static IEnumerator LoadAssetBundle()
     {
-        var path = Path.Combine(Application.streamingAssetsPath, kPrefabsName);
+        var path = GetPath(kPrefabsName);
 
         var request = UnityWebRequest.Get(path);
         yield return request.SendWebRequest();
@@ -74,5 +74,12 @@ public class Entry: MonoBehaviour
 
         var assetBundle = AssetBundle.LoadFromMemory(assetBundleData);
         Instantiate(assetBundle.LoadAsset<GameObject>("HotUpdatePrefab.prefab"));
+    }
+
+    private const string kLocalUrl = "http://172.18.13.106:8000/";
+    private static string GetPath(string fileName)
+    {
+        return Path.Combine(kLocalUrl, fileName);
+        // return Path.Combine(Application.streamingAssetsPath, fileName);
     }
 }
