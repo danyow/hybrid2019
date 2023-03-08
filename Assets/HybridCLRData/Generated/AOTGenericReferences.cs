@@ -6,8 +6,8 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 
 	// {{ AOT generic type
 	//System.Collections.Generic.IEnumerator`1<System.Object>
-	//System.Collections.Generic.List`1<System.Object>
 	//System.Collections.Generic.List`1<HotUpdateEntry/MyIntVec3>
+	//System.Collections.Generic.List`1<System.Object>
 	//System.Collections.Generic.List`1<HotUpdateMono/MyIntVec3>
 	//System.Collections.Generic.List`1/Enumerator<System.Object>
 	// }}

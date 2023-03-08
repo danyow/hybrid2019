@@ -13,9 +13,9 @@ public class Entry: MonoBehaviour
     private void Awake()
     {
         instance = this;
-        // StartCoroutine(LoadAssemblyAndAssetBundle());
+        StartCoroutine(LoadAssemblyAndAssetBundle());
 
-        StartCoroutine(LoadAssembly());
+        // StartCoroutine(LoadAssembly());
         
         // StartCoroutine(LoadAssetBundle());
     }
